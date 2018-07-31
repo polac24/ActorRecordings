@@ -13,6 +13,11 @@
 		1033FF052110DDB6004F65C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1033FF042110DDB6004F65C0 /* Assets.xcassets */; };
 		1033FF082110DDB6004F65C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1033FF062110DDB6004F65C0 /* LaunchScreen.storyboard */; };
 		1033FF132110DDB6004F65C0 /* ActorRecordingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033FF122110DDB6004F65C0 /* ActorRecordingsTests.swift */; };
+		1033FF202110DE24004F65C0 /* Actorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033FF1F2110DE24004F65C0 /* Actorable.swift */; };
+		1033FF222110DE36004F65C0 /* Commandable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033FF212110DE36004F65C0 /* Commandable.swift */; };
+		1033FF242110DE4F004F65C0 /* ActorDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033FF232110DE4F004F65C0 /* ActorDriver.swift */; };
+		1033FF262110DEA5004F65C0 /* AnyActorDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033FF252110DEA5004F65C0 /* AnyActorDriver.swift */; };
+		1033FF282110DEC8004F65C0 /* Messagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033FF272110DEC8004F65C0 /* Messagable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +41,11 @@
 		1033FF0E2110DDB6004F65C0 /* ActorRecordingsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActorRecordingsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1033FF122110DDB6004F65C0 /* ActorRecordingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorRecordingsTests.swift; sourceTree = "<group>"; };
 		1033FF142110DDB6004F65C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1033FF1F2110DE24004F65C0 /* Actorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actorable.swift; sourceTree = "<group>"; };
+		1033FF212110DE36004F65C0 /* Commandable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commandable.swift; sourceTree = "<group>"; };
+		1033FF232110DE4F004F65C0 /* ActorDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorDriver.swift; sourceTree = "<group>"; };
+		1033FF252110DEA5004F65C0 /* AnyActorDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyActorDriver.swift; sourceTree = "<group>"; };
+		1033FF272110DEC8004F65C0 /* Messagable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messagable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +87,8 @@
 		1033FEFC2110DDB3004F65C0 /* ActorRecordings */ = {
 			isa = PBXGroup;
 			children = (
+				1033FF1E2110DDCD004F65C0 /* HomeScreen */,
+				1033FF1D2110DDBD004F65C0 /* ActorFoundation */,
 				1033FEFD2110DDB3004F65C0 /* AppDelegate.swift */,
 				1033FEFF2110DDB3004F65C0 /* ViewController.swift */,
 				1033FF012110DDB3004F65C0 /* Main.storyboard */,
@@ -94,6 +106,25 @@
 				1033FF142110DDB6004F65C0 /* Info.plist */,
 			);
 			path = ActorRecordingsTests;
+			sourceTree = "<group>";
+		};
+		1033FF1D2110DDBD004F65C0 /* ActorFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				1033FF1F2110DE24004F65C0 /* Actorable.swift */,
+				1033FF212110DE36004F65C0 /* Commandable.swift */,
+				1033FF272110DEC8004F65C0 /* Messagable.swift */,
+				1033FF232110DE4F004F65C0 /* ActorDriver.swift */,
+				1033FF252110DEA5004F65C0 /* AnyActorDriver.swift */,
+			);
+			path = ActorFoundation;
+			sourceTree = "<group>";
+		};
+		1033FF1E2110DDCD004F65C0 /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HomeScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,8 +228,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1033FF242110DE4F004F65C0 /* ActorDriver.swift in Sources */,
 				1033FF002110DDB3004F65C0 /* ViewController.swift in Sources */,
+				1033FF262110DEA5004F65C0 /* AnyActorDriver.swift in Sources */,
+				1033FF282110DEC8004F65C0 /* Messagable.swift in Sources */,
+				1033FF202110DE24004F65C0 /* Actorable.swift in Sources */,
 				1033FEFE2110DDB3004F65C0 /* AppDelegate.swift in Sources */,
+				1033FF222110DE36004F65C0 /* Commandable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
