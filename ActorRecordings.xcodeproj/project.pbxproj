@@ -18,6 +18,11 @@
 		1033FF242110DE4F004F65C0 /* ActorDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033FF232110DE4F004F65C0 /* ActorDriver.swift */; };
 		1033FF262110DEA5004F65C0 /* AnyActorDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033FF252110DEA5004F65C0 /* AnyActorDriver.swift */; };
 		1033FF282110DEC8004F65C0 /* Messagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033FF272110DEC8004F65C0 /* Messagable.swift */; };
+		10C2F0502110E16600B5C123 /* RecordingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C2F04E2110E16600B5C123 /* RecordingsViewController.swift */; };
+		10C2F0512110E16600B5C123 /* RecordingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10C2F04F2110E16600B5C123 /* RecordingsViewController.xib */; };
+		10C2F0532110E19500B5C123 /* RecordingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C2F0522110E19500B5C123 /* RecordingsScreen.swift */; };
+		10C2F0562110E7EB00B5C123 /* FileManagerable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C2F0552110E7EB00B5C123 /* FileManagerable.swift */; };
+		10C2F0582110EED700B5C123 /* RecordingsTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C2F0572110EED700B5C123 /* RecordingsTableDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +51,11 @@
 		1033FF232110DE4F004F65C0 /* ActorDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorDriver.swift; sourceTree = "<group>"; };
 		1033FF252110DEA5004F65C0 /* AnyActorDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyActorDriver.swift; sourceTree = "<group>"; };
 		1033FF272110DEC8004F65C0 /* Messagable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messagable.swift; sourceTree = "<group>"; };
+		10C2F04E2110E16600B5C123 /* RecordingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsViewController.swift; sourceTree = "<group>"; };
+		10C2F04F2110E16600B5C123 /* RecordingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordingsViewController.xib; sourceTree = "<group>"; };
+		10C2F0522110E19500B5C123 /* RecordingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsScreen.swift; sourceTree = "<group>"; };
+		10C2F0552110E7EB00B5C123 /* FileManagerable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerable.swift; sourceTree = "<group>"; };
+		10C2F0572110EED700B5C123 /* RecordingsTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsTableDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +97,8 @@
 		1033FEFC2110DDB3004F65C0 /* ActorRecordings */ = {
 			isa = PBXGroup;
 			children = (
-				1033FF1E2110DDCD004F65C0 /* HomeScreen */,
+				10C2F0542110E7DD00B5C123 /* Protocols */,
+				1033FF1E2110DDCD004F65C0 /* RecordingsScreen */,
 				1033FF1D2110DDBD004F65C0 /* ActorFoundation */,
 				1033FEFD2110DDB3004F65C0 /* AppDelegate.swift */,
 				1033FEFF2110DDB3004F65C0 /* ViewController.swift */,
@@ -120,11 +131,23 @@
 			path = ActorFoundation;
 			sourceTree = "<group>";
 		};
-		1033FF1E2110DDCD004F65C0 /* HomeScreen */ = {
+		1033FF1E2110DDCD004F65C0 /* RecordingsScreen */ = {
 			isa = PBXGroup;
 			children = (
+				10C2F0522110E19500B5C123 /* RecordingsScreen.swift */,
+				10C2F04E2110E16600B5C123 /* RecordingsViewController.swift */,
+				10C2F04F2110E16600B5C123 /* RecordingsViewController.xib */,
+				10C2F0572110EED700B5C123 /* RecordingsTableDelegate.swift */,
 			);
-			path = HomeScreen;
+			path = RecordingsScreen;
+			sourceTree = "<group>";
+		};
+		10C2F0542110E7DD00B5C123 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				10C2F0552110E7EB00B5C123 /* FileManagerable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10C2F0512110E16600B5C123 /* RecordingsViewController.xib in Resources */,
 				1033FF082110DDB6004F65C0 /* LaunchScreen.storyboard in Resources */,
 				1033FF052110DDB6004F65C0 /* Assets.xcassets in Resources */,
 				1033FF032110DDB3004F65C0 /* Main.storyboard in Resources */,
@@ -228,11 +252,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10C2F0502110E16600B5C123 /* RecordingsViewController.swift in Sources */,
 				1033FF242110DE4F004F65C0 /* ActorDriver.swift in Sources */,
 				1033FF002110DDB3004F65C0 /* ViewController.swift in Sources */,
+				10C2F0562110E7EB00B5C123 /* FileManagerable.swift in Sources */,
+				10C2F0532110E19500B5C123 /* RecordingsScreen.swift in Sources */,
 				1033FF262110DEA5004F65C0 /* AnyActorDriver.swift in Sources */,
 				1033FF282110DEC8004F65C0 /* Messagable.swift in Sources */,
 				1033FF202110DE24004F65C0 /* Actorable.swift in Sources */,
+				10C2F0582110EED700B5C123 /* RecordingsTableDelegate.swift in Sources */,
 				1033FEFE2110DDB3004F65C0 /* AppDelegate.swift in Sources */,
 				1033FF222110DE36004F65C0 /* Commandable.swift in Sources */,
 			);
