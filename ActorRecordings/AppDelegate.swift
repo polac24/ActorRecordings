@@ -15,15 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        let vc = RecordingsViewController()
-        let ex = RecordingsScreen.Externals.init(folder: FileManager.default, vc: vc)
-        let driver = UIActorDriver.init(actor: RecordingsScreen.Actor.initial, externals: ex)
-        driver.send(.initialize(title: "Hello"))
+        let flowCoordinator = RecordingsFlowCoordinator()
+        
         
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UINavigationController(rootViewController: vc)
+        window?.rootViewController = flowCoordinator.root
         window?.makeKeyAndVisible()
         window?.backgroundColor = .white
         return true

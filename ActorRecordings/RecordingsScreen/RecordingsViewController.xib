@@ -11,13 +11,25 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RecordingsViewController" customModule="ActorRecordings" customModuleProvider="target">
             <connections>
+                <outlet property="addItem" destination="1jq-eO-4JW" id="FMH-sY-LcN"/>
                 <outlet property="dataType" destination="N9z-bz-LIy" id="yXv-Xm-XtW"/>
+                <outlet property="searchItem" destination="om0-MY-vq7" id="5bK-V5-6VK"/>
                 <outlet property="tableView" destination="KB2-OH-4sD" id="OXS-n3-DUF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <customObject id="N9z-bz-LIy" customClass="RecordingsTableDelegate" customModule="ActorRecordings" customModuleProvider="target"/>
+        <barButtonItem systemItem="search" id="om0-MY-vq7">
+            <connections>
+                <action selector="tap:" destination="-1" id="NPn-dz-fZT"/>
+            </connections>
+        </barButtonItem>
+        <barButtonItem systemItem="add" id="1jq-eO-4JW">
+            <connections>
+                <action selector="tap:" destination="-1" id="wfy-Uy-XM0"/>
+            </connections>
+        </barButtonItem>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

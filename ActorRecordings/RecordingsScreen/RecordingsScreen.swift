@@ -6,7 +6,8 @@
 //  Copyright © 2018 Bartosz Polaczyk. All rights reserved.
 //
 
-import UIKit
+import Foundation
+
 
 struct RecordingsScreen{
 
@@ -15,6 +16,12 @@ struct RecordingsScreen{
         case foldersRootReady(path:String)
         case foldersReady(paths:[String])
         case foldersFetchError
+        case userInputEvent(UserInput)
+        
+        enum UserInput {
+            case tappedAdd
+            case tappedSearch
+        }
     }
     
     enum Command:Commandable{
@@ -22,6 +29,7 @@ struct RecordingsScreen{
         case getRoot
         case fetchFolders(path:String)
         case presentPaths(paths:[String])
+        case presentSearch
         
         func interpret(externals: Externals, feedback: AnyActorDriver<Message>){
             switch self {
@@ -43,7 +51,8 @@ struct RecordingsScreen{
                 externals.vc.title = title
             case .presentPaths(let paths):
                 externals.vc.setValues(paths)
-                break
+            case .presentSearch:
+                externals.flowCoordinator.presentSearch()
             }
         }
     }
@@ -65,6 +74,8 @@ struct RecordingsScreen{
             case (.foldersReady(let paths), .initailizing(let title)):
                 self = .initailized(title: title, folders: paths)
                 return [.presentPaths(paths: paths)]
+            case (.userInputEvent(.tappedSearch), _):
+                return [.presentSearch]
             default:
                 break
             }
@@ -75,5 +86,6 @@ struct RecordingsScreen{
     struct Externals {
         let folder:FileManagerable
         let vc:RecordingsViewControllerable
+        let flowCoordinator:RecordingsFlowCoordinatorable
     }
 }
