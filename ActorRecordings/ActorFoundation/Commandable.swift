@@ -9,5 +9,5 @@
 protocol Commandable{
     associatedtype Message:Messagable
     associatedtype Externals
-    func interpret(externals: Externals, feedback: AnyActorDriver<Message> )
+    func interpret(externals: Externals, feedback: @escaping AnyActorDriver<Message> )
 }

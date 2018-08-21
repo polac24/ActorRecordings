@@ -11,6 +11,7 @@ import Foundation
 protocol FileManagerable{
     func urls(for directory: FileManager.SearchPathDirectory, in domainMask: FileManager.SearchPathDomainMask) -> [URL]
     func contentsOfDirectory(atPath path: String) throws -> [String]
+    func fileExists(atPath path: String, isDirectory: UnsafeMutablePointer<ObjCBool>?) -> Bool
 }
 
 extension FileManager:FileManagerable{}
