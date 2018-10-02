@@ -17,6 +17,7 @@ struct RecordingsScreen{
         case foldersReady(paths:[String])
         case foldersFetchError
         case userInputEvent(UserInput)
+        case userInputRefresh
         
         enum UserInput {
             case tappedAdd
@@ -30,6 +31,7 @@ struct RecordingsScreen{
         case fetchFolders(path:String)
         case presentPaths(paths:[String])
         case presentSearch
+        case refreshIndicator(visible: Bool)
         
         func interpret(externals: Externals, feedback: AnyActorDriver<Message>){
             switch self {
@@ -53,29 +55,38 @@ struct RecordingsScreen{
                 externals.vc.setValues(paths)
             case .presentSearch:
                 externals.flowCoordinator.presentSearch()
+            case .refreshIndicator(let visible):
+                externals.vc.refreshIndicator(enabled: visible)
             }
         }
     }
     
     enum Actor:Actorable {
-        case initial
-        case initailizing(title:String)
-        case initailized(title:String, folders:[String])
-        case uninitailized(title:String)
-        
+        case starting
+        case initial(title:String)
+        case initailizing(title:String, root:String)
+        case initailized(title:String, folders:[String], root:String)
+        case uninitailized(title:String, root:String)
         
         mutating func onReceive(_ message: Message) -> [Command] {
             switch(message, self){
-            case (.initialize(let title),.initial):
-                self = .initailizing(title: title)
+            case (.initialize(let title),.starting):
+                self = .initial(title: title)
                 return [.setTitle(title: title), .getRoot]
-            case (.foldersRootReady(let root), .initailizing):
+            case (.foldersRootReady(let root), .initial(let title)):
+                self = .initailizing(title: title, root: root)
                 return [.fetchFolders(path: root)]
-            case (.foldersReady(let paths), .initailizing(let title)):
-                self = .initailized(title: title, folders: paths)
-                return [.presentPaths(paths: paths)]
+            case (.foldersReady(let paths), .initailizing(let title, let root)):
+                self = .initailized(title: title, folders: paths, root: root)
+                return [.presentPaths(paths: paths), .refreshIndicator(visible: false)]
             case (.userInputEvent(.tappedSearch), _):
-                return [.presentSearch]
+                return [.presentSearch, .refreshIndicator(visible: false)]
+            case (.userInputRefresh, .initailized(let title, _, let root)),
+                 (.userInputRefresh, .uninitailized(let title, let root)):
+                self = .initailizing(title: title, root: root)
+                return [.fetchFolders(path: root)]
+            case (.userInputRefresh, _):
+                return [.refreshIndicator(visible: false)]
             default:
                 break
             }

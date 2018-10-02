@@ -12,6 +12,10 @@ class RecordingsTableDelegate: NSObject, UITableViewDataSource {
     typealias DataType = String
     var paths:[DataType] = []
 
+    override init() {
+        super.init()
+        
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return paths.count
     }

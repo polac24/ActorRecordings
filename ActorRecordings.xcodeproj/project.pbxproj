@@ -12,7 +12,7 @@
 		1033FF032110DDB3004F65C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1033FF012110DDB3004F65C0 /* Main.storyboard */; };
 		1033FF052110DDB6004F65C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1033FF042110DDB6004F65C0 /* Assets.xcassets */; };
 		1033FF082110DDB6004F65C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1033FF062110DDB6004F65C0 /* LaunchScreen.storyboard */; };
-		1033FF132110DDB6004F65C0 /* ActorRecordingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033FF122110DDB6004F65C0 /* ActorRecordingsTests.swift */; };
+		1033FF132110DDB6004F65C0 /* RecordingsScreenActorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033FF122110DDB6004F65C0 /* RecordingsScreenActorTests.swift */; };
 		1033FF202110DE24004F65C0 /* Actorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033FF1F2110DE24004F65C0 /* Actorable.swift */; };
 		1033FF222110DE36004F65C0 /* Commandable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033FF212110DE36004F65C0 /* Commandable.swift */; };
 		1033FF242110DE4F004F65C0 /* ActorDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1033FF232110DE4F004F65C0 /* ActorDriver.swift */; };
@@ -23,6 +23,7 @@
 		106ACF5221123B8D00A3D7CF /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 106ACF5021123B8D00A3D7CF /* SearchViewController.xib */; };
 		106ACF56211243F200A3D7CF /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106ACF55211243F200A3D7CF /* SearchScreen.swift */; };
 		106ACF5921138C2500A3D7CF /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 106ACF5821138C2500A3D7CF /* Search.swift */; };
+		1098B34B2135D7FE004D0126 /* RecordingsScreenCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1098B34A2135D7FE004D0126 /* RecordingsScreenCommandTests.swift */; };
 		10C2F0502110E16600B5C123 /* RecordingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C2F04E2110E16600B5C123 /* RecordingsViewController.swift */; };
 		10C2F0512110E16600B5C123 /* RecordingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10C2F04F2110E16600B5C123 /* RecordingsViewController.xib */; };
 		10C2F0532110E19500B5C123 /* RecordingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C2F0522110E19500B5C123 /* RecordingsScreen.swift */; };
@@ -49,7 +50,7 @@
 		1033FF072110DDB6004F65C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1033FF092110DDB6004F65C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1033FF0E2110DDB6004F65C0 /* ActorRecordingsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ActorRecordingsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1033FF122110DDB6004F65C0 /* ActorRecordingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorRecordingsTests.swift; sourceTree = "<group>"; };
+		1033FF122110DDB6004F65C0 /* RecordingsScreenActorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsScreenActorTests.swift; sourceTree = "<group>"; };
 		1033FF142110DDB6004F65C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1033FF1F2110DE24004F65C0 /* Actorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actorable.swift; sourceTree = "<group>"; };
 		1033FF212110DE36004F65C0 /* Commandable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Commandable.swift; sourceTree = "<group>"; };
@@ -61,6 +62,7 @@
 		106ACF5021123B8D00A3D7CF /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		106ACF55211243F200A3D7CF /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
 		106ACF5821138C2500A3D7CF /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		1098B34A2135D7FE004D0126 /* RecordingsScreenCommandTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsScreenCommandTests.swift; sourceTree = "<group>"; };
 		10C2F04E2110E16600B5C123 /* RecordingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsViewController.swift; sourceTree = "<group>"; };
 		10C2F04F2110E16600B5C123 /* RecordingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecordingsViewController.xib; sourceTree = "<group>"; };
 		10C2F0522110E19500B5C123 /* RecordingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsScreen.swift; sourceTree = "<group>"; };
@@ -125,7 +127,8 @@
 		1033FF112110DDB6004F65C0 /* ActorRecordingsTests */ = {
 			isa = PBXGroup;
 			children = (
-				1033FF122110DDB6004F65C0 /* ActorRecordingsTests.swift */,
+				1033FF122110DDB6004F65C0 /* RecordingsScreenActorTests.swift */,
+				1098B34A2135D7FE004D0126 /* RecordingsScreenCommandTests.swift */,
 				1033FF142110DDB6004F65C0 /* Info.plist */,
 			);
 			path = ActorRecordingsTests;
@@ -314,7 +317,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1033FF132110DDB6004F65C0 /* ActorRecordingsTests.swift in Sources */,
+				1033FF132110DDB6004F65C0 /* RecordingsScreenActorTests.swift in Sources */,
+				1098B34B2135D7FE004D0126 /* RecordingsScreenCommandTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,7 +22,7 @@ class RecordingsFlowCoordinator:RecordingsFlowCoordinatorable {
     private func buildRecordingsVC() -> UIViewController{
         let vc = RecordingsViewController()
         let ex = RecordingsScreen.Externals(folder: FileManager.default, vc: vc, flowCoordinator: self)
-        let driver = UIActorDriver(actor: RecordingsScreen.Actor.initial, externals: ex)
+        let driver = UIActorDriver(actor: RecordingsScreen.Actor.starting, externals: ex)
         vc.delegateActor = driver.send
         
         driver.send(.initialize(title: "Hello"))

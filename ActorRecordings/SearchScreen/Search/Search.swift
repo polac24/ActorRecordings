@@ -11,10 +11,11 @@ extension Int:Messagable{}
 
 class Searcher {
     
+    
     enum Message:Messagable{
         case retrievePath(String)
         case contents([String])
-        case contentError(Error)
+        case contentError(String)
         case exists(String, exists:Bool, isDir: Bool)
         case childResponse(Int)
     }
@@ -23,6 +24,7 @@ class Searcher {
         case content(String)
         case fileExists(String)
         case retrievePath(String)
+        case submitAction(Int)
         
         func interpret(externals: Externals, feedback: @escaping AnyActorDriver<Message>){
             switch self {
@@ -31,7 +33,7 @@ class Searcher {
                     let contents = try externals.fileManager.contentsOfDirectory(atPath: path).compactMap({"\(path)/\($0)"})
                     feedback(.contents(contents))
                 }catch{
-                    feedback(.contentError(error))
+                    feedback(.contentError(error.localizedDescription))
                 }
             case .fileExists(let path):
                 var isDir : ObjCBool = false
@@ -40,12 +42,13 @@ class Searcher {
             case .retrievePath(let path):
                 let childActor = externals.workerFactory({feedback(.childResponse($0))})
                 childActor(.retrievePath(path))
+            case .submitAction(let count):
+                externals.action(count)
             }
         }
     }
     
     struct Actor:Actorable {
-        let action:(Int) -> Void
         private var waitingResponses = 0
         private var count = 0
         
@@ -70,12 +73,12 @@ class Searcher {
             case .childResponse(let childCount):
                 count += childCount
             case .contentError(_):
-                action(-1)
                 waitingResponses = 0
+                return [.submitAction(-1)]
             }
             waitingResponses -= 1
             if waitingResponses == 0 {
-                action(count)
+                return [.submitAction(count)]
             }
             return []
         }
@@ -84,6 +87,7 @@ class Searcher {
     struct Externals {
         let fileManager:FileManagerable
         var workerFactory:(AnyActorDriver<Int>) -> AnyActorDriver<Searcher.Message>
+        let action:(Int) -> Void
     }
 }
 

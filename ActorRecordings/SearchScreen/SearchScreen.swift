@@ -11,9 +11,11 @@ import Foundation
 class SearchScreen {
 
     enum Message:Messagable{
+        case none
     }
     
     enum Command:Commandable{
+        case none
         func interpret(externals: Externals, feedback: AnyActorDriver<Message>){
         }
     }

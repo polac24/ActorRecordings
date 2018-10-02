@@ -9,5 +9,6 @@
 protocol Actorable {
     associatedtype Message
     associatedtype Command:Commandable where Command.Message == Message
+    
     mutating func onReceive(_ : Message) -> [Command]
 }
