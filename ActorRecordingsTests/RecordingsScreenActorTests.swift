@@ -12,7 +12,7 @@ import XCTest
 class RecordingsScreenActorTests: XCTestCase {
     func testInitialization_setsTitle(){
         // Arrange
-        var actor = RecordingsScreen.Actor.initial
+        var actor = RecordingsScreen.Actor.starting
         // Act
         let commands = actor.onReceive(.initialize(title: "Home"))
         // Assert
@@ -20,7 +20,7 @@ class RecordingsScreenActorTests: XCTestCase {
     }
     func testInitialization_beginsSearchFromRoot(){
         // Arrange
-        var actor = RecordingsScreen.Actor.initial
+        var actor = RecordingsScreen.Actor.starting
         // Act
         let commands = actor.onReceive(.initialize(title: "Home"))
         // Assert
@@ -28,7 +28,7 @@ class RecordingsScreenActorTests: XCTestCase {
     }
     func testReadyRootFolder_beginsSearch(){
         // Arrange
-        var actor = RecordingsScreen.Actor.initial
+        var actor = RecordingsScreen.Actor.starting
         _ = actor.onReceive(.initialize(title: "Home"))
         // Act
         let commands = actor.onReceive(.foldersRootReady(path: "DCMI"))

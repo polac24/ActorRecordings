@@ -18,6 +18,9 @@ struct RecordingsScreen{
         case foldersFetchError
         case userInputEvent(UserInput)
         case userInputRefresh
+        case directoryCreationIntent
+        case fileCreationIntent
+        case createItem(Command.AddType, String)
         
         enum UserInput {
             case tappedAdd
@@ -31,9 +34,17 @@ struct RecordingsScreen{
         case fetchFolders(path:String)
         case presentPaths(paths:[String])
         case presentSearch
+        case presentAddSelection
+        case presentAdd(type: AddType)
         case refreshIndicator(visible: Bool)
+        case createItem(type: AddType, name: String, path: String)
         
-        func interpret(externals: Externals, feedback: AnyActorDriver<Message>){
+        enum AddType{
+            case file
+            case directory
+        }
+        
+        func interpret(externals: Externals, feedback: @escaping AnyActorDriver<Message>){
             switch self {
             case .getRoot:
                 let urls = externals.folder.urls(for: .documentDirectory , in: FileManager.SearchPathDomainMask.allDomainsMask)
@@ -57,6 +68,12 @@ struct RecordingsScreen{
                 externals.flowCoordinator.presentSearch()
             case .refreshIndicator(let visible):
                 externals.vc.refreshIndicator(enabled: visible)
+            case .presentAddSelection:
+                externals.flowCoordinator.presentAddSelection(feedback: feedback)
+            case .presentAdd(let type):
+                externals.flowCoordinator.presentAdd(type: type, feedback: feedback)
+            case .createItem(let type, let name, let path):
+                #warning("to do")
             }
         }
     }
@@ -81,12 +98,22 @@ struct RecordingsScreen{
                 return [.presentPaths(paths: paths), .refreshIndicator(visible: false)]
             case (.userInputEvent(.tappedSearch), _):
                 return [.presentSearch, .refreshIndicator(visible: false)]
+            case (.userInputEvent(.tappedAdd), _):
+                return [.presentAddSelection, .refreshIndicator(visible: false)]
             case (.userInputRefresh, .initailized(let title, _, let root)),
                  (.userInputRefresh, .uninitailized(let title, let root)):
                 self = .initailizing(title: title, root: root)
                 return [.fetchFolders(path: root)]
             case (.userInputRefresh, _):
                 return [.refreshIndicator(visible: false)]
+            case (.directoryCreationIntent, _):
+                return [.presentAdd(type: .directory)]
+            case (.fileCreationIntent, _):
+                return [.presentAdd(type: .file)]
+            case (.createItem(let type, let name), .initailizing(_, let root)),
+                 (.createItem(let type, let name), .initailized(_, _ , let root)),
+                 (.createItem(let type, let name), .uninitailized(_, let root)):
+                return [.createItem(type: type, name: name, path: root)]
             default:
                 break
             }

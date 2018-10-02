@@ -9,6 +9,8 @@ import UIKit
 
 protocol RecordingsFlowCoordinatorable{
     func presentSearch()
+    func presentAddSelection(feedback: @escaping AnyActorDriver<RecordingsScreen.Message>)
+    func presentAdd(type: RecordingsScreen.Command.AddType, feedback: @escaping AnyActorDriver<RecordingsScreen.Message>)
 }
 
 class RecordingsFlowCoordinator:RecordingsFlowCoordinatorable {
@@ -39,7 +41,43 @@ class RecordingsFlowCoordinator:RecordingsFlowCoordinatorable {
         return vc
     }
     
-    func presentSearch(){
+    private func buildAddVC(feedback: @escaping AnyActorDriver<RecordingsScreen.Message>) -> UIViewController{
+        let vc = UIAlertController(title: "Create new:", message: nil, preferredStyle: .actionSheet)
+        let directory = UIAlertAction(title: "Directory", style: .default) { (action) in
+            feedback(.directoryCreationIntent)
+        }
+        let file = UIAlertAction(title: "File", style: .default) { (action) in
+            feedback(.fileCreationIntent)
+        }
+        let cancel = UIAlertAction(title: "Canel", style: .cancel) { _ in }
+        vc.addAction(directory)
+        vc.addAction(file)
+        vc.addAction(cancel)
+        return vc
+    }
+    
+    private func buildAddVC(_ type: RecordingsScreen.Command.AddType, feedback: @escaping AnyActorDriver<RecordingsScreen.Message>) -> UIViewController{
+        let vc = UIAlertController(title: "Create new", message: nil, preferredStyle: .alert)
+        let ok = UIAlertAction(title: "OK", style: .default) { (action) in
+            guard let name = vc.textFields?.first?.text, !name.isEmpty else {
+                return;
+            }
+            feedback(.createItem(type, name))
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in }
+        vc.addAction(ok)
+        vc.addAction(cancel)
+        vc.addTextField(configurationHandler: nil)
+        return vc
+    }
+    
+    func presentSearch() {
         root.pushViewController(buildSearchVC(), animated: true)
+    }
+    func presentAddSelection(feedback: @escaping AnyActorDriver<RecordingsScreen.Message>) {
+        root.present(buildAddVC(feedback: feedback), animated: true, completion: nil)
+    }
+    func presentAdd(type: RecordingsScreen.Command.AddType, feedback: @escaping AnyActorDriver<RecordingsScreen.Message>) {
+        root.present(buildAddVC(type, feedback: feedback), animated: true, completion: nil)
     }
 }
