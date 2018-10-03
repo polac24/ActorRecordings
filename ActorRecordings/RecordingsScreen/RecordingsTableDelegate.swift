@@ -9,8 +9,7 @@
 import UIKit
 
 class RecordingsTableDelegate: NSObject, UITableViewDataSource {
-    typealias DataType = String
-    var paths:[DataType] = []
+    var paths:[RecordingsScreen.Element] = []
 
     override init() {
         super.init()

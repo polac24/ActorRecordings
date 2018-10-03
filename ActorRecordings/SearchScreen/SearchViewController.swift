@@ -15,7 +15,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     var delegateActor:AnyActorDriver<SearchScreen.Message>?
 
-    func setValues(_ paths: [RecordingsTableDelegate.DataType]) {
+    func setValues(_ paths: [RecordingsScreen.Element]) {
         dataSource.paths = paths
         tableView.reloadData()
     }

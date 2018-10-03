@@ -8,13 +8,13 @@
 
 import Foundation
 
-
 struct RecordingsScreen{
+    typealias Element = String
 
     enum Message:Messagable{
         case initialize(title:String)
         case foldersRootReady(path:String)
-        case foldersReady(paths:[String])
+        case foldersReady(paths:[Element])
         case foldersFetchError
         case userInputEvent(UserInput)
         case userInputRefresh
@@ -32,7 +32,7 @@ struct RecordingsScreen{
         case setTitle(title:String)
         case getRoot
         case fetchFolders(path:String)
-        case presentPaths(paths:[String])
+        case presentPaths(paths:[Element])
         case presentSearch
         case presentAddSelection
         case presentAdd(type: AddType)
@@ -72,8 +72,17 @@ struct RecordingsScreen{
                 externals.flowCoordinator.presentAddSelection(feedback: feedback)
             case .presentAdd(let type):
                 externals.flowCoordinator.presentAdd(type: type, feedback: feedback)
-            case .createItem(let type, let name, let path):
-                #warning("to do")
+            case .createItem(.file, let name, let path):
+                let filePath = (path as NSString).appendingPathComponent(name)
+                let result = externals.folder.createFile(atPath: filePath, contents: nil, attributes: nil)
+                #warning("error handling")
+            case .createItem(.directory, let name, let path):
+                let dirPath = (path as NSString).appendingPathComponent(name)
+                do {
+                    try externals.folder.createDirectory(atPath: dirPath, withIntermediateDirectories: true, attributes: nil)
+                } catch {
+                    #warning("error handling")
+                }
             }
         }
     }
@@ -82,7 +91,7 @@ struct RecordingsScreen{
         case starting
         case initial(title:String)
         case initailizing(title:String, root:String)
-        case initailized(title:String, folders:[String], root:String)
+        case initailized(title:String, folders:[Element], root:String)
         case uninitailized(title:String, root:String)
         
         mutating func onReceive(_ message: Message) -> [Command] {

@@ -10,13 +10,13 @@ import UIKit
 
 protocol RecordingsViewControllerable:class {
     var title: String? {get set}
-    func setValues(_ :[RecordingsTableDelegate.DataType])
+    func setValues(_ :[RecordingsScreen.Element])
     func refreshIndicator(enabled: Bool)
 }
 
 
 class RecordingsViewController: UIViewController, RecordingsViewControllerable {
-    func setValues(_ paths: [RecordingsTableDelegate.DataType]) {
+    func setValues(_ paths: [RecordingsScreen.Element]) {
         dataType.paths = paths
         tableView?.reloadData()
     }
