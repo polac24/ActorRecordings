@@ -8,8 +8,13 @@
 
 import Foundation
 
+enum FolederElement:Equatable {
+    case file(name:String, path: String)
+    case dir(name:String, path: String)
+}
+
 struct RecordingsScreen{
-    typealias Element = String
+    typealias Element = FolederElement
 
     enum Message:Messagable{
         case initialize(title:String)
@@ -56,7 +61,16 @@ struct RecordingsScreen{
             case .fetchFolders(let path):
                 do {
                     let paths = try externals.folder.contentsOfDirectory(atPath: path)
-                    feedback(.foldersReady(paths: paths))
+                    let elements = paths.map { (content) -> FolederElement in
+                        var isDir : ObjCBool = false
+                        let filePath = (path as NSString).appendingPathComponent(content)
+                        _ = externals.folder.fileExists(atPath: filePath, isDirectory: &isDir)
+                        if isDir.boolValue {
+                            return .dir(name:content, path: path)
+                        }
+                        return .file(name:content, path: path)
+                    }
+                    feedback(.foldersReady(paths: elements))
                 } catch {
                     feedback(.foldersFetchError)
                 }
@@ -110,6 +124,7 @@ struct RecordingsScreen{
             case (.userInputEvent(.tappedAdd), _):
                 return [.presentAddSelection, .refreshIndicator(visible: false)]
             case (.userInputRefresh, .initailized(let title, _, let root)),
+                  (.userInputRefresh, .initailizing(let title, let root)),
                  (.userInputRefresh, .uninitailized(let title, let root)):
                 self = .initailizing(title: title, root: root)
                 return [.fetchFolders(path: root)]

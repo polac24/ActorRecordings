@@ -21,7 +21,19 @@ class RecordingsTableDelegate: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "test") ?? UITableViewCell()
-        cell.textLabel?.text = paths[indexPath.row]
+        let element = paths[indexPath.row]
+        let name:String
+        let dir:Bool
+        switch element {
+        case .dir(let n):
+            dir = true
+            name = n.name
+        case .file(let n):
+            dir = false
+            name = n.name
+        }
+        cell.textLabel?.text = name
+        cell.accessoryType = dir ? .disclosureIndicator : .none
         return cell
     }
     
